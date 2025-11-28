@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: wonpday-server
+    env: node
+    plan: free
+    buildCommand: "cd server && npm install"
+    startCommand: "node index.js"
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 4000
+    autoDeploy: true
+
+  - type: web
+    name: wonpday-client
+    env: node
+    plan: free
+    buildCommand: "cd client && npm install && npm run build"
+    staticPublishPath: client/dist
+    autoDeploy: true
+    envVars:
+      - key: VITE_SOCKET_URL
+        value: https://wonpday-server.onrender.com
