@@ -4,7 +4,8 @@ services:
     env: node
     plan: free
     buildCommand: "cd server && npm install"
-    startCommand: "cd server && node index.js"
+    startCommand: "cd server && npm start"
+    autoDeploy: true
     envVars:
       - key: PORT
         value: 4000
@@ -17,6 +18,7 @@ services:
     plan: free
     buildCommand: "cd client && npm install && npm run build"
     staticPublishPath: client/dist
+    autoDeploy: true
     envVars:
       - key: VITE_SOCKET_URL
         value: https://wonpday-server.onrender.com
